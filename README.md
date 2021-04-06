@@ -1,8 +1,17 @@
 # ReadLine-Is-Nonblocking
-Why doesn't ReadLine() block consistently with pipes in Cygwin? Apparently, it does not
-even though it says in the [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) that it is.
+System.Console.ReadLine() is a critical function in the C# runtime: along with System.Console.WriteLine(), these methods serve a critical role
+in input and output of a NET program, the central point of why NET Core was devised. For if a console written in C# cannot run cross-platform,
+what would be the point of providing a C# program with a GUI?
 
-In Msys2, here is a screen shot of ReadLine() breaking on reading output.
+Unfortunately, the heart of a C# console program does not even function as you would expect. In the following simple programs, I write from
+one using WriteLine() and read from the other using ReadLine(). The two programs are connected using a pipe in a shell, i.e.,
+`w.exe | r.exe`. The program `r.exe` should wait for the writer finish, then return the input until the end of file in the pipe. But, it doesn't:
+the call to ReadLine() returns immediately with `null`.
+
+According to the [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) ReadLine() should wait on input,
+or be "blocking". But, it is not.
+
+Here is a screen shot of program "r" returning an empty result, when it is clear, "w" has written data.
 
 ![To err is human, but not for computer](Screenshot%20(27).png)
 
@@ -10,5 +19,4 @@ On Linux, the ReadLine() works. When I use another non-C# program inbetween the 
 C# programs, e.g., `./w/bin/Debug/net5.0/w.exe 2 | sed 's/ / /' | ./r/bin/Debug/net5.0/r.exe`,
 the ReadLine() gets data.
 
-It's non-blocking, because if you then modify the program to perform a *second* ReadLine() call,
-the second call will have data! BS!
+If ReadLine() is blocking, why did the method return without data? If it's non-blocking, how do I know when to stop trying to read the pipe?
