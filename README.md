@@ -4,4 +4,4 @@ even though it says in the [documentation](https://docs.microsoft.com/en-us/dotn
 
 In Msys2, here is a screen shot of ReadLine() breaking on reading output.
 
-
+![To err is human, but not for computer](Screenshot%20(27).png)
