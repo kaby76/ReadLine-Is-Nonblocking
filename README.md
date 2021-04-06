@@ -4,13 +4,17 @@ in input and output for of a NET program, the central point of why NET Core was 
 For if a console written in C# cannot run cross-platform,
 what would be the point of using C# for other than Windows?
 
-Unfortunately, the heart of a C# console program does not even function as you would expect. In the following simple programs, I write from
-one using WriteLine() and read from the other using ReadLine(). The two programs are connected using a pipe in a shell, i.e.,
-`w.exe | r.exe`. The program `r.exe` should wait for the writer finish, then return the input until the end of file in the pipe. But, it doesn't:
+Unfortunately, the heart of a C# console program does not even function as you would expect. In the following simple programs I wrote,
+program "w" writes a single line of data using WriteLine() to stdout, and program "r" reads from stdin using ReadLine().
+The two programs are connected using a pipe in a shell. The shell used can be Cmd, or Powershell, or Bash on Linux. On Windows,
+I cannot stand Cmd nor Powershell, so I use MSYS2 or Cygwin.
+The syntax for all shells is the same: `w.exe | r.exe`.
+
+The program `r.exe` should wait for the writer finish, then return the input until the end of file in the pipe. But, it doesn't:
 the call to ReadLine() returns immediately with `null`.
 
-According to the [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) ReadLine() should wait on input,
-or be "blocking". But, it is not.
+According to the [documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) ReadLine()
+should wait on input. In other words, it should be "blocking". But, it is not.
 
 Here is a screen shot of program "r" returning an empty result, when it is clear, "w" has written data.
 
