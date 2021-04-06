@@ -1,5 +1,5 @@
 # ReadLine-Is-Nonblocking
-System.Console.ReadLine() is a critical function in the C# runtime: along with System.Console.WriteLine(), these methods serve a critical role
+[System.Console.ReadLine()](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) is a critical function in the C# runtime: along with System.Console.WriteLine(), these methods serve a critical role
 in input and output of a NET program, the central point of why NET Core was devised. For if a console written in C# cannot run cross-platform,
 what would be the point of providing a C# program with a GUI?
 
