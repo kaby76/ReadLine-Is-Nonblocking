@@ -38,10 +38,8 @@ namespace w
 			System.Console.Error.WriteLine("Parse completed of C:\\Users\\kenne\\Documents\\AntlrVSIX\\test\\A.g4");
 			for (int j = 0; j < count; ++j)
 			{
-				var s = @"{
-  ""FileName"": ""C:\\Users\\kenne\\Documents\\AntlrVSIX\\test\\A.g4""
-}";
-				System.Console.Write(s);
+				var s = @"{  ""FileName"": ""C:\\Users\\kenne\\Documents\\AntlrVSIX\\test\\A.g4""}";
+				System.Console.WriteLine(s);
 			}
 		}
     }
