@@ -1,9 +1,10 @@
 # ReadLine-Is-Nonblocking
 [System.Console.ReadLine()](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) is a fundamental
 function in the C# runtime. ReadLine() and WriteLine() play a critical role
-in input and output for of NET console programs. They form a critical role in why NET Core was invented.
-For if a console program written in C# cannot run cross-platform,
-what would be the point of using C# for other than Windows?
+in input and output for of NET console programs, the reason why NET Core was invented: to provide
+a way for C# programs to run across different targets.
+For if a console program written in C# cannot run cross-target,
+what would be the point of using C# on anything other than Windows?
 
 Unfortunately, the heart of a C# console program does not even function as you would expect. In the following simple programs I wrote,
 program "w" writes a single line of data using WriteLine() to stdout, and program "r" reads from stdin using ReadLine().
