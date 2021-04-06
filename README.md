@@ -2,7 +2,7 @@
 [System.Console.ReadLine()](https://docs.microsoft.com/en-us/dotnet/api/system.console.readline?view=net-5.0) is a critical function in the C# runtime. ReadLine() and WriteLine() play a critical role
 in input and output for of a NET program, the central point of why NET Core was invented.
 For if a console written in C# cannot run cross-platform,
-what would be the point of providing a C# program with a GUI?
+what would be the point of using C# for other than Windows?
 
 Unfortunately, the heart of a C# console program does not even function as you would expect. In the following simple programs, I write from
 one using WriteLine() and read from the other using ReadLine(). The two programs are connected using a pipe in a shell, i.e.,
